@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "382813411021",
+    "project_id": "xpertiz-carwash",
+    "storage_bucket": "xpertiz-carwash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382813411021:android:8afbd3d042e02048887b84",
+        "android_client_info": {
+          "package_name": "com.webxpertiz.carwash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382813411021-eq87mjfj1io5n13c7ct6sars1mu2a2ai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webxpertiz.carwash",
+            "certificate_hash": "099dddb780a9fe6f83f42bd765c50f81d9cb4bbb"
+          }
+        },
+        {
+          "client_id": "382813411021-71dpf91gj7qhchqq015chrf9i4fbh2jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYi-fGPEpPIufJWxxmkQIyK3lNW6yBhEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382813411021-71dpf91gj7qhchqq015chrf9i4fbh2jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
