@@ -5,6 +5,7 @@ import 'package:booking_system_flutter/model/ContactModel.dart';
 import 'package:booking_system_flutter/model/UserData.dart';
 import 'package:booking_system_flutter/utils/Constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:path/path.dart';
@@ -120,7 +121,7 @@ class ChatMessageService extends BaseService {
 
   Stream<QuerySnapshot> fetchContacts({String? userId}) {
 
-    return userRef.doc('RFvZevwHe9XB73wMQc77E1l1LDr1').collection(CONTACT_COLLECTION).snapshots();
+    return userRef.doc(userId).collection(CONTACT_COLLECTION).snapshots();
   }
 
   Stream<List<UserData>> getUserDetailsById({String? id, String? searchText}) {

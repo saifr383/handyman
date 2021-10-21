@@ -90,6 +90,7 @@ class SignInScreenState extends State<SignInScreen> {
           });
         } else {
           print('check////////////');
+
           authService.signIn(context, res: res, email: emailCont.text, password: passwordCont.text).then((value) async {
             snackBar(context, title: language!.loginSuccessfully);
 
@@ -241,24 +242,24 @@ class SignInScreenState extends State<SignInScreen> {
                       ],
                     ),
                     16.height,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GoogleLogoWidget(size: 24).onTap(() async {
-                          hideKeyboard(context);
-
-                          appStore.setLoading(true);
-
-                          await authService.signInWithGoogle().then((user) {
-                            DashboardScreen().launch(context, isNewTask: true);
-                          }).catchError((e) {
-                            toast(e.toString(), print: true);
-                          });
-
-                          appStore.setLoading(false);
-                        }),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     GoogleLogoWidget(size: 24).onTap(() async {
+                    //       hideKeyboard(context);
+                    //
+                    //       appStore.setLoading(true);
+                    //
+                    //       await authService.signInWithGoogle().then((user) {
+                    //         DashboardScreen().launch(context, isNewTask: true);
+                    //       }).catchError((e) {
+                    //         toast(e.toString(), print: true);
+                    //       });
+                    //
+                    //       appStore.setLoading(false);
+                    //     }),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

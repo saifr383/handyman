@@ -7,6 +7,7 @@ import 'package:booking_system_flutter/network/RestApis.dart';
 import 'package:booking_system_flutter/screens/home/components/ServiceHorizontalListComponent.dart';
 import 'package:booking_system_flutter/utils/Colors.dart';
 import 'package:booking_system_flutter/utils/Common.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -82,12 +83,16 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           8.height,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(providerInfoResponse!.data!.display_name.validate(), style: boldTextStyle(size: 20)),
-                              Text(providerInfoResponse!.data!.providertype.validate(), style: boldTextStyle(color: primaryColor)),
-                            ],
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(providerInfoResponse!.data!.display_name.validate(), style: boldTextStyle(size: 20)),
+                                Text(providerInfoResponse!.data!.providertype.validate(), style: boldTextStyle(color: primaryColor)),
+                              ],
+                            ),
                           ),
                           6.height,
                           if (providerInfoResponse!.data!.contact_number.validate().isNotEmpty)

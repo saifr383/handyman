@@ -2,6 +2,7 @@ import 'package:booking_system_flutter/model/LoginResponse.dart';
 import 'package:booking_system_flutter/model/UserData.dart';
 import 'package:booking_system_flutter/network/RestApis.dart';
 import 'package:booking_system_flutter/screens/DashboardScreen.dart';
+import 'package:booking_system_flutter/screens/SignInScreen.dart';
 import 'package:booking_system_flutter/utils/Constant.dart';
 import 'package:booking_system_flutter/utils/ModelKeys.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -77,6 +78,7 @@ class AuthServices {
   }
 
   Future<void> signUpWithEmailPassword(context, {String? name, String? email, String? password, String? mobileNumber, String? lName, String? userName}) async {
+
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email!, password: password!);
     if (userCredential != null && userCredential.user != null) {
       User currentUser = userCredential.user!;
@@ -98,6 +100,7 @@ class AuthServices {
       userModel.player_id = getStringAsync(PLAYERID);
 
       await userService.addDocumentWithCustomId(currentUser.uid, userModel.toJson()).then((value) async {
+
         var request = {
           UserKeys.firstName: name,
           UserKeys.lastName: lName,
@@ -106,14 +109,13 @@ class AuthServices {
           UserKeys.contactNumber: mobileNumber,
           UserKeys.email: email,
           UserKeys.password: password,
-          UserKeys.uid: userModel.uid,
+          UserKeys.uid: currentUser.uid,
         };
+
         await createUser(request).then((res) async {
-          await loginUser(request).then((res) async {
-            DashboardScreen(index: 0).launch(context, isNewTask: true, pageRouteAnimation: PageRouteAnimation.Slide);
-          }).catchError((e) {
-            toast(e.toString());
-          });
+            _auth.signOut();
+            SignInScreen().launch(context, isNewTask: true, pageRouteAnimation: PageRouteAnimation.Slide);
+            // DashboardScreen(index: 0).launch(context, isNewTask: true, pageRouteAnimation: PageRouteAnimation.Slide);
         }).catchError((e) {
           toast(e.toString());
           return;
@@ -133,10 +135,11 @@ class AuthServices {
     } else {
       throw errorSomethingWentWrong;
     }
+    print('doneeeeeeeeeeeeeeeeeeeeeeeeeeee');
   }
 
   Future<void> signIn(context, {String? email, String? password, LoginResponse? res}) async {
-    UserCredential? userCredential = await _auth.createUserWithEmailAndPassword(email: email!, password: password!);
+    UserCredential? userCredential = await _auth.signInWithEmailAndPassword(email: email!, password: password!);
     if (userCredential != null && userCredential.user != null) {
       User currentUser = userCredential.user!;
 
